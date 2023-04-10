@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LibrosService } from '../services/libros.service';
 
 @Component({
   selector: 'app-libros',
   templateUrl: './libros.component.html',
 })
-export class LibrosComponent {
+export class LibrosComponent implements OnInit{
 
   libros = [''];
-  constructor(librosService: LibrosService){
-    this.libros = librosService.obtenerLibros();
+  constructor(private librosService: LibrosService){
+
   }
 
   eliminarLibro(libro: any){
@@ -18,7 +18,14 @@ export class LibrosComponent {
 
   guardarLibro(f: any){
     if(f.valid){
-      this.libros.push(f.value.nombreLibro);
+      this.librosService.agregarLibro(f.value.nombreLibro);
     }
+  }
+
+  ngOnInit(): void {
+    this.libros = this.librosService.obtenerLibros();
+    this.librosService.librosSubject.subscribe( () => {
+      this.libros = this.librosService.obtenerLibros();
+    });
   }
 }
