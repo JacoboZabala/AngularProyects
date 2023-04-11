@@ -11,6 +11,8 @@ import { LibrosService } from './services/libros.service';
 import { InicioComponent } from './inicio.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { RegistrarComponent } from './seguridad/registrar/registrar.component';
+import { LoginComponent } from './seguridad/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { MaterialModule } from './material.module';
     usuarioComponent,
     LibrosComponent,
     LibroComponent,
-    InicioComponent
+    InicioComponent,
+    RegistrarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
