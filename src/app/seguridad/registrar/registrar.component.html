@@ -1,19 +1,27 @@
-<section>
-  <form>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input type="email" matInput placeholder="example@mail.com">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Contraseña</mat-label>
-      <input type="password" matInput placeholder="Digite su contraseña">
-    </mat-form-field>
+<section class="flex-container">
+  <form #f="ngForm" (ngSubmit)="registrarUsuario(f)">
+    <div>
+      <mat-form-field>
+        <mat-label>Ingrese Nombre</mat-label>
+        <input type="text" ngModel name="nombre" required placeholder="Ingrese nombre" matInput>
+        <mat-error>Ingrese Nombre</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="caja">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="example@mail.com" ngModel name="email" email required #emailInput="ngModel">
+        <mat-error *ngIf="emailInput.hasError('required')">El espacio no puede estar en blanco</mat-error>
+        <mat-error *ngIf="!emailInput.hasError('required')">El email es invalido</mat-error>
+      </mat-form-field>
+    </div> <br>
+    <div class="caja">
+      <mat-form-field hintLabel="La contraseña debe tener minimo 6 caracteres">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" matInput placeholder="Digite su contraseña" ngModel name="password" required minlength="7">
+        <mat-error>Debe tener minimo 6 caracteres</mat-error>
+      </mat-form-field>
+    </div> <br>
+    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Guardar</button>
   </form>
-</section>
-
-<section id="contenedor">
-  <div id="elemento1" class="elemento"></div>
-  <div id="elemento2" class="elemento"></div>
-  <div id="elemento3" class="elemento"></div>
-  <div id="elemento4" class="elemento"></div>
 </section>
